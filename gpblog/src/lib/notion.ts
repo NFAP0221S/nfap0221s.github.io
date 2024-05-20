@@ -1,19 +1,27 @@
-// lib/notion.js
 import { Client } from '@notionhq/client';
 
 const notion = new Client({ auth: process.env.NEXT_PUBLIC_NOTION_API_KEY });
 
-export const getDatabase = async (databaseId) => {
+export interface Post {
+  id: string;
+  properties: {
+    이름: {
+      title: { plain_text: string }[];
+    };
+  };
+}
+
+export const getDatabase = async (databaseId: string): Promise<Post[]> => {
   const response = await notion.databases.query({ database_id: databaseId });
-  return response.results;
+  return response.results as unknown as Post[];
 };
 
-export const getPage = async (pageId) => {
+export const getPage = async (pageId: string) => {
   const response = await notion.pages.retrieve({ page_id: pageId });
   return response;
 };
 
-export const getBlocks = async (blockId) => {
+export const getBlocks = async (blockId: string) => {
   const blocks = [];
   let cursor;
   while (true) {
