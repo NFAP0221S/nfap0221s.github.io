@@ -8,21 +8,10 @@ interface PostLinkProps {
 }
 
 const PostLink: React.FC<PostLinkProps> = ({ id, title }) => {
-  console.log('### PostLink postsId:', id);
-  const clickLogHandler = (e: React.MouseEvent) => {
-    console.log('### func postsId:', id);
-
-    e.stopPropagation();
-  };
-
+  
   return (
-    // <Link href={`/posts/${id}`} onClick={clickLogHandler}>
-    //     {title}
-    // </Link>
-    <Link legacyBehavior href={`/posts/${id}`}>
-      <a onClick={clickLogHandler}>
+    <Link href={`/posts/${id}`}>
         {title}
-      </a>
     </Link>
   );
 };
