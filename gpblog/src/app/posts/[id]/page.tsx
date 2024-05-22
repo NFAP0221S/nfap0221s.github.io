@@ -18,7 +18,6 @@ export default async function Post({ params }: any) {
   }
 
   const renderBlock = (block: any) => {
-    console.log('### block:', block)
     switch (block.type) {
       case 'paragraph':
         console.log('### paragraph')
@@ -33,8 +32,8 @@ export default async function Post({ params }: any) {
         console.log('### heading_3')
         return <h3>{block.heading_3.rich_text[0]?.plain_text}</h3>;
       case 'bulleted_list_item':
-        console.log('### bulleted_list_item', block.bulleted_list_item.rich_text)
-        return <li>{block.bulleted_list_item.rich_text[0]?.plain_text}</li>;
+        console.log('### bulleted_list_item', block.bulleted_list_item.rich_text[1])
+        return <li>{block.bulleted_list_item.rich_text[0]?.plain_text}{block.bulleted_list_item.rich_text[1]?.plain_text}</li>;
       case 'numbered_list_item':
         console.log('### numbered_list_item')
         return <li>{block.numbered_list_item.rich_text[0]?.plain_text}</li>;
