@@ -19,7 +19,8 @@ export default async function Post({ params }: any) {
 
   const  isChildren = async (id: string, text: string) => {
     const blocks = await getBlocks(id);
-    // console.log(text, blocks[0]?.bulleted_list_item)
+    if(text === '토글칠드런') console.log(text, blocks[0].paragraph.rich_text[0].plain_text)
+    console.log(text, blocks[0]?.bulleted_list_item)
   } 
 
   const renderRichText = (richTextArray: any[]) => {
@@ -58,7 +59,7 @@ export default async function Post({ params }: any) {
           </div>
         );
       case 'toggle':
-        // console.log('토글', block.toggle)
+        console.log('토글', block)
         if(block.has_children){
           isChildren(block.id, '토글칠드런')
         }
