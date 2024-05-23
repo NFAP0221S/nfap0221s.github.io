@@ -17,30 +17,59 @@ export default async function Post({ params }: any) {
     notFound();
   }
 
+  const  isChildren = async (id: string) => {
+    const blocks = await getBlocks(id);
+    console.log('블록3', blocks[0]?.bulleted_list_item)
+  } 
+
+  const renderRichText = (richTextArray: any[]) => {
+    return richTextArray.map((text, index) => (
+      <span key={index}>
+        {text.plain_text}
+      </span>
+    ));
+  };
+
   const renderBlock = (block: any) => {
     switch (block.type) {
       case 'paragraph':
-        console.log('### paragraph')
-        return <p>{block.paragraph.rich_text[0]?.plain_text}</p>;
+        return <p>{renderRichText(block.paragraph.rich_text)}</p>;
       case 'heading_1':
-        console.log('### heading_1')
-        return <h1>{block.heading_1.rich_text[0]?.plain_text}</h1>;
+        return <h1>{renderRichText(block.heading_1.rich_text)}</h1>;
       case 'heading_2':
-        console.log('### heading_2')
-        return <h2>{block.heading_2.rich_text[0]?.plain_text}</h2>;
+        return <h2>{renderRichText(block.heading_2.rich_text)}</h2>;
       case 'heading_3':
-        console.log('### heading_3')
-        return <h3>{block.heading_3.rich_text[0]?.plain_text}</h3>;
+        return <h3>{renderRichText(block.heading_3.rich_text)}</h3>;
       case 'bulleted_list_item':
-        console.log('### bulleted_list_item', block.bulleted_list_item.rich_text[1])
-        return <li>{block.bulleted_list_item.rich_text[0]?.plain_text}{block.bulleted_list_item.rich_text[1]?.plain_text}</li>;
+        console.log('블록', block)
+        if(block.has_children){
+          isChildren(block.id)
+        }
+        return <li>{renderRichText(block.bulleted_list_item.rich_text)}</li>;
       case 'numbered_list_item':
-        console.log('### numbered_list_item')
-        return <li>{block.numbered_list_item.rich_text[0]?.plain_text}</li>;
+        return <li>{renderRichText(block.numbered_list_item.rich_text)}</li>;
+      case 'to_do':
+        return (
+          <div>
+            <label>
+              <input type="checkbox" checked={block.to_do.checked} readOnly />
+              {renderRichText(block.to_do.rich_text)}
+            </label>
+          </div>
+        );
+      case 'toggle':
+        // console.log('토글', block.toggle)
+        return (
+          <details>
+            <summary>{renderRichText(block.toggle.rich_text)}</summary>
+            <div>{block.children && block.children.map(renderBlock)}</div>
+          </details>
+        );
       default:
         return <div>Unsupported block type: {block.type}</div>;
     }
   };
+
 
   return (
     <div>

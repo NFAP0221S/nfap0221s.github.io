@@ -25,6 +25,11 @@ export const getBlocks = async (blockId: string) => {
   const blocks = [];
   let cursor;
   while (true) {
+    const res = await notion.blocks.children.list({start_cursor: cursor,block_id: blockId});
+    if(res) {
+      console.log('resres1', res.results.length)
+      console.log('resres3', res.results[6])
+    }
     const { results, next_cursor } = await notion.blocks.children.list({
       start_cursor: cursor,
       block_id: blockId,
