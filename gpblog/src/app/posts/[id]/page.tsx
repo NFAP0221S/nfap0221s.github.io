@@ -18,7 +18,7 @@ export default async function Post({ params }: any) {
   }
 
   const  isChildren = async (id: string, text: string) => {
-    const blocks = await getBlocks(id);
+    const blocks: any = await getBlocks(id);
     if(text === '토글칠드런') console.log(text, blocks[0].paragraph.rich_text[0].plain_text)
     console.log(text, blocks[0]?.bulleted_list_item)
   } 
@@ -86,6 +86,13 @@ export default async function Post({ params }: any) {
             {block.image.caption && <figcaption>{block.image.caption[0].plain_text}</figcaption>}
           </figure>
         );
+      case 'callout':
+        return (
+          <div style={{ border: '1px solid #e0e0e0', borderRadius: '5px', padding: '10px', display: 'flex', alignItems: 'center', backgroundColor: '#f5f5f5' }}>
+            <span style={{ marginRight: '10px' }}>{block.callout.icon.emoji}</span>
+            <div>{renderRichText(block.callout.rich_text)}</div>
+          </div>
+      );
       // default:
       //   console.log('디폴트', block.image)
       //   return (
