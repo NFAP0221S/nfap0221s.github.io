@@ -93,14 +93,12 @@ export default async function Post({ params }: any) {
             <div>{renderRichText(block.callout.rich_text)}</div>
           </div>
       );
-      // default:
-      //   console.log('디폴트', block.image)
-      //   return (
-      //     <figure>
-      //       <img src={block.image.url} alt={block.image.caption} style={{ maxWidth: '100%' }} />
-      //       {block.image.caption && <figcaption>{block.image.caption}</figcaption>}
-      //     </figure>
-      //   );
+      case 'divider':
+        return <div>
+          <br />
+          <hr />
+          <br />
+        </div>
       default:
         console.log('디폴트', block)
         return <div>Unsupported block type: {block.type}</div>;
