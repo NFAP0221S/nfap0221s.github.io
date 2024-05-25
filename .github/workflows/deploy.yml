@@ -32,7 +32,9 @@ jobs:
         working-directory: ./gpblog
         run: npm run build
 
-      - run: touch out/.nojekyll
+      - name: No jekyll setup
+        working-directory: ./gpblog
+        run: touch out/.nojekyll
 
       # - name: Export static files
       #   working-directory: ./gpblog
