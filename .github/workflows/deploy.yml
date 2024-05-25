@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      NEXT_PUBLIC_NOTION_API_KEY: ${{ secrets.NEXT_PUBLIC_NOTION_API_KEY }}
+      NEXT_PUBLIC_NOTION_DATABASE_ID: ${{ secrets.NEXT_PUBLIC_NOTION_DATABASE_ID }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -17,6 +21,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+      # - name: Setup environment variables
+      #   run: |
 
       - name: Install dependencies
         working-directory: ./gpblog
