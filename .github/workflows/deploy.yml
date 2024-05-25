@@ -32,9 +32,9 @@ jobs:
         working-directory: ./gpblog
         run: npm run build
 
-      - name: Export static files
-        working-directory: ./gpblog
-        run: npm run export
+      # - name: Export static files
+      #   working-directory: ./gpblog
+      #   run: npm run export
 
       - name: Deploy to GitHub Pages
         working-directory: ./gpblog
