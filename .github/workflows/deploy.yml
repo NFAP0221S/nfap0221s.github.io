@@ -11,23 +11,30 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3  # 업데이트
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3  # 업데이트
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Node.js 20으로 업데이트
+          node-version: '20'
+
+      - name: Change directory to gpblog
+        run: cd gpblog
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./gpblog
 
       - name: Build project
         run: npm run build
+        working-directory: ./gpblog
 
       - name: Export static files
         run: npm run export
+        working-directory: ./gpblog
 
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run deploy
+        working-directory: ./gpblog
