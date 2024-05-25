@@ -32,6 +32,8 @@ jobs:
         working-directory: ./gpblog
         run: npm run build
 
+      - run: touch out/.nojekyll
+
       # - name: Export static files
       #   working-directory: ./gpblog
       #   run: npm run export
@@ -43,5 +45,5 @@ jobs:
       - name: Deploy to GitHub Pages
         working-directory: ./gpblog
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
         run: npm run deploy
