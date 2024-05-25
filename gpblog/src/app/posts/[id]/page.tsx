@@ -70,7 +70,7 @@ export default async function Post({ params }: any) {
           </details>
         );
       case 'code':
-        // console.log('토글', block.toggle)
+        console.log('코드', block)
         return (
           <pre>
           <code>
