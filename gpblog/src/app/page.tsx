@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <div>
       <h1>Home 입니다.</h1>
-      <h2>배포 v3</h2>
+      <h2>배포 v4</h2>
       {isProd ? <h2>트루</h2> : <h2>펄스</h2>}
       <ul>
         {posts.map((post) => (
