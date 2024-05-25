@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      NEXT_PUBLIC_NOTION_API_KEY: ${{ secrets.NEXT_PUBLIC_NOTION_API_KEY }}
+      NEXT_PUBLIC_NOTION_DATABASE_ID: ${{ secrets.NEXT_PUBLIC_NOTION_DATABASE_ID }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -31,6 +35,10 @@ jobs:
       # - name: Export static files
       #   working-directory: ./gpblog
       #   run: npm run export
+      - name: Configure Git
+        run: |
+          git config --global user.name "NFAP0221S"
+          git config --global user.email "vawav11@gmail.com"
 
       - name: Deploy to GitHub Pages
         working-directory: ./gpblog
