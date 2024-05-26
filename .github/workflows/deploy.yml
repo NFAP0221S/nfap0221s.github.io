@@ -32,7 +32,8 @@ jobs:
 
       - name: No jekyll setup
         working-directory: ./gpblog
-        run: touch out/.nojekyll
+        run: echo "" > ./out/.nojekyll
+        # run: touch out/.nojekyll
 
       - name: Configure Git
         run: |
