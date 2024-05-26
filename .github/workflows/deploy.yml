@@ -33,11 +33,11 @@ jobs:
       - name: No jekyll setup
         working-directory: ./gpblog
         run: touch out/.nojekyll
-
-      - name: Configure Git
-        run: |
-          git config --global user.name "NFAP0221S"
-          git config --global user.email "vawav11@gmail.com"
+        
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
       - name: Deploy to GitHub Pages
         working-directory: ./gpblog
