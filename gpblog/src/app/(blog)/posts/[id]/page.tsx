@@ -27,6 +27,23 @@ export default async function Post({ params }: any) {
     console.log(text, blocks[0]?.bulleted_list_item)
   } 
 
+  const renderTable = async (block: any) => {
+    const rows = await getBlocks(block.id); // 테이블 블록의 자식 블록을 가져옴
+    return (
+      <table>
+        <tbody>
+          {rows.map((row: any, rowIndex: number) => (
+            <tr key={rowIndex}>
+              {row.table_row.cells.map((cell: any, cellIndex: number) => (
+                <td key={cellIndex}>{renderRichText(cell)}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  };
+
   const renderRichText = (richTextArray: any[]) => {
     richTextArray.map((text, index) => {
       console.log('rich text:', text)
@@ -70,7 +87,7 @@ export default async function Post({ params }: any) {
         return <h3>{renderRichText(block.heading_3.rich_text)}</h3>;
       case 'bulleted_list_item':
         if(block.has_children){
-          isChildren(block.id, '불릿 블럭:')
+          isChildren(block.id, '불릿 자식:')
         }
         return <li>{renderRichText(block.bulleted_list_item.rich_text)}</li>;
       case 'numbered_list_item':
@@ -131,11 +148,24 @@ export default async function Post({ params }: any) {
       );
       case 'divider':
         console.log('구분선 블럭: <hr /> 처리')
-        return <div>
-          <br />
-          <hr />
-          <br />
-        </div>
+        return  <hr />
+      case 'table':
+        console.log('테이블 블럭:', block);
+        // isChildren(block.id, '테이블 자식:')
+        return renderTable(block);
+        // return (
+        //   <table>
+        //     <tbody>
+        //       {block.table.rows.map((row: any, rowIndex: number) => (
+        //         <tr key={rowIndex}>
+        //           {row.cells.map((cell: any, cellIndex: number) => (
+        //             <td key={cellIndex}>{renderRichText(cell.rich_text)}</td>
+        //           ))}
+        //         </tr>
+        //       ))}
+        //     </tbody>
+        //   </table>
+        // );
       default:
         console.log('디폴트 타입 블럭:', block)
         return <div>Unsupported block type: {block.type}</div>;
