@@ -61,9 +61,9 @@ export default async function Post({ params }: any) {
         </span> */}
         <span key={index}>
           {text.plain_text.split('\n').map((part:string, partIndex: number) => (
-            <React.Fragment key={index}>
+            <React.Fragment key={partIndex}>
               {part}
-              {/* 마지막 조각이  */}
+              {/* 한 라인에서 마지막 조각(배열에서 index)이 아닐때만 br 처리 */}
               {partIndex < text.plain_text.split('\n').length - 1 && <br />}
             </React.Fragment>
           ))}

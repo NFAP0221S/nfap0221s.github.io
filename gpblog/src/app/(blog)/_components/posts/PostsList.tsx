@@ -8,6 +8,7 @@ interface Props{
 }
 
 const PostsList: React.FC<Props> = ({ list }) => {
+  console.log('PostsList', list)
 
   return (
     <ul>
