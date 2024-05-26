@@ -19,7 +19,10 @@ export default async function Post({ params }: any) {
 
   const  isChildren = async (id: string, text: string) => {
     const blocks: any = await getBlocks(id);
-    if(text === '토글 자식') console.log(text, blocks[0].paragraph.rich_text[0].plain_text)
+    if(text === '토글 자식:') {
+      console.log(text, blocks[0].paragraph.rich_text[0].plain_text)
+      return blocks[0].paragraph.rich_text[0].plain_text
+    }
     console.log(text, blocks[0]?.bulleted_list_item)
   } 
 
@@ -60,13 +63,21 @@ export default async function Post({ params }: any) {
         );
       case 'toggle':
         console.log('토글 블럭', block)
+
+        let innerText: Promise<any>;
         if(block.has_children){
-          isChildren(block.id, '토글 자식:')
+          innerText = isChildren(block.id, '토글 자식:')
+          return (
+            <details>
+              <summary>{renderRichText(block.toggle.rich_text)}</summary>
+              <div>{innerText}</div>
+            </details>
+          );
         }
         return (
           <details>
             <summary>{renderRichText(block.toggle.rich_text)}</summary>
-            <div>{block.children && block.children.map(renderBlock)}</div>
+            {/* <div>{block.children && block.children.map(renderBlock)}</div> */}
           </details>
         );
       case 'code':
