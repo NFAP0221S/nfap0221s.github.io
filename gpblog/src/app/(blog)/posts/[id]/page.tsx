@@ -151,21 +151,7 @@ export default async function Post({ params }: any) {
         return  <hr />
       case 'table':
         console.log('테이블 블럭:', block);
-        // isChildren(block.id, '테이블 자식:')
         return renderTable(block);
-        // return (
-        //   <table>
-        //     <tbody>
-        //       {block.table.rows.map((row: any, rowIndex: number) => (
-        //         <tr key={rowIndex}>
-        //           {row.cells.map((cell: any, cellIndex: number) => (
-        //             <td key={cellIndex}>{renderRichText(cell.rich_text)}</td>
-        //           ))}
-        //         </tr>
-        //       ))}
-        //     </tbody>
-        //   </table>
-        // );
       default:
         console.log('디폴트 타입 블럭:', block)
         return <div>Unsupported block type: {block.type}</div>;
