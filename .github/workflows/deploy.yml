@@ -1,4 +1,4 @@
-name: Test SSH Key
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,18 +6,43 @@ on:
       - main
 
 jobs:
-  test-ssh-key:
+  build:
     runs-on: ubuntu-latest
+
+    env:
+      NEXT_PUBLIC_NOTION_API_KEY: ${{ secrets.NEXT_PUBLIC_NOTION_API_KEY }}
+      NEXT_PUBLIC_NOTION_DATABASE_ID: ${{ secrets.NEXT_PUBLIC_NOTION_DATABASE_ID }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Add SSH key
-        id: ssh-agent
-        uses: webfactory/ssh-agent@v0.5.3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+          node-version: '20'
 
-      - name: Test SSH Key
-        run: echo "SSH Key has been added successfully"
+      - name: Install dependencies
+        working-directory: ./gpblog
+        run: npm install
+
+      - name: Build project
+        working-directory: ./gpblog
+        run: npm run build
+
+      - name: No jekyll setup
+        working-directory: ./gpblog
+        run: touch out/.nojekyll
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "NFAP0221S"
+          git config --global user.email "vawav11@gmail.com"
+
+      - name: Deploy to GitHub Pages
+        working-directory: ./gpblog
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.ACTION_TOKEN }}@github.com/NFAP0221S/NFAP0221S.github.io.git
+          npm run deploy
