@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Test SSH Key
 
 on:
   push:
@@ -6,42 +6,18 @@ on:
       - main
 
 jobs:
-  build:
+  test-ssh-key:
     runs-on: ubuntu-latest
-
-    env:
-      NEXT_PUBLIC_NOTION_API_KEY: ${{ secrets.NEXT_PUBLIC_NOTION_API_KEY }}
-      NEXT_PUBLIC_NOTION_DATABASE_ID: ${{ secrets.NEXT_PUBLIC_NOTION_DATABASE_ID }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        working-directory: ./gpblog
-        run: npm install
-
-      - name: Build project
-        working-directory: ./gpblog
-        run: npm run build
-
-      - name: No jekyll setup
-        working-directory: ./gpblog
-        run: touch out/.nojekyll
-
       - name: Add SSH key
+        id: ssh-agent
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: Deploy to GitHub Pages
-        working-directory: ./gpblog
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
-        run: |
-          npm run deploy
+      - name: Test SSH Key
+        run: echo "SSH Key has been added successfully"
