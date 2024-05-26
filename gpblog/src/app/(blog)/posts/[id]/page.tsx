@@ -1,4 +1,4 @@
-import { getPage, getBlocks, getDatabase } from '../../../lib/notion';
+import { getBlocks, getDatabase, getPage } from '@/lib/notion';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
@@ -19,7 +19,7 @@ export default async function Post({ params }: any) {
 
   const  isChildren = async (id: string, text: string) => {
     const blocks: any = await getBlocks(id);
-    if(text === '토글칠드런') console.log(text, blocks[0].paragraph.rich_text[0].plain_text)
+    if(text === '토글 자식') console.log(text, blocks[0].paragraph.rich_text[0].plain_text)
     console.log(text, blocks[0]?.bulleted_list_item)
   } 
 
@@ -32,7 +32,7 @@ export default async function Post({ params }: any) {
   };
 
   const renderBlock = (block: any) => {
-    console.log('zzzzs',block)
+    console.log('최상위 블럭:',block)
     switch (block.type) {
       case 'paragraph':
         return <p>{renderRichText(block.paragraph.rich_text)}</p>;
@@ -44,7 +44,7 @@ export default async function Post({ params }: any) {
         return <h3>{renderRichText(block.heading_3.rich_text)}</h3>;
       case 'bulleted_list_item':
         if(block.has_children){
-          isChildren(block.id, '점칠드런')
+          isChildren(block.id, '불릿 블럭:')
         }
         return <li>{renderRichText(block.bulleted_list_item.rich_text)}</li>;
       case 'numbered_list_item':
@@ -59,9 +59,9 @@ export default async function Post({ params }: any) {
           </div>
         );
       case 'toggle':
-        console.log('토글', block)
+        console.log('토글 블럭', block)
         if(block.has_children){
-          isChildren(block.id, '토글칠드런')
+          isChildren(block.id, '토글 자식:')
         }
         return (
           <details>
@@ -70,7 +70,7 @@ export default async function Post({ params }: any) {
           </details>
         );
       case 'code':
-        console.log('코드', block)
+        console.log('코드 블럭:', block)
         return (
           <pre>
           <code>
@@ -79,7 +79,7 @@ export default async function Post({ params }: any) {
         </pre>
         );
       case 'image':
-        console.log('ㄴㄴㄴㄴ', block.image.caption[0].plain_text)
+        console.log('이미지 블럭:', block.image.caption[0].plain_text)
         return (
           <figure>
             <img src={block.image.file.url} alt={block.image.caption} style={{ maxWidth: '100%' }} />
@@ -87,6 +87,7 @@ export default async function Post({ params }: any) {
           </figure>
         );
       case 'callout':
+        console.log('콜아웃 블럭:', block)
         return (
           <div style={{ border: '1px solid #e0e0e0', borderRadius: '5px', padding: '10px', display: 'flex', alignItems: 'center', backgroundColor: '#f5f5f5' }}>
             <span style={{ marginRight: '10px' }}>{block.callout.icon.emoji}</span>
@@ -94,13 +95,14 @@ export default async function Post({ params }: any) {
           </div>
       );
       case 'divider':
+        console.log('구분선 블럭: <hr /> 처리')
         return <div>
           <br />
           <hr />
           <br />
         </div>
       default:
-        console.log('디폴트', block)
+        console.log('디폴트 타입 블럭:', block)
         return <div>Unsupported block type: {block.type}</div>;
     }
   };

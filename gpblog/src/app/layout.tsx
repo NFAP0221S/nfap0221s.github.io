@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import ReactQueryProvider from "./components/providers/ReactQueryProvider";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,7 +21,6 @@ export default function RootLayout({
         <title>My Blog</title>
       </head>
       <body>
-        <ReactQueryProvider>
           <header>
             <nav>
               <a href="/">Home</a>
@@ -35,7 +32,6 @@ export default function RootLayout({
           <footer>
             <p>푸터</p>
           </footer>
-        </ReactQueryProvider>
       </body>
     </html>
   );
