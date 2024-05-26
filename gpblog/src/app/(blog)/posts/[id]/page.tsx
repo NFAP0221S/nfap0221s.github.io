@@ -1,5 +1,6 @@
 import { getBlocks, getDatabase, getPage } from '@/lib/notion';
 import { notFound } from 'next/navigation';
+import React from 'react';
 
 export async function generateStaticParams() {
   const posts = await getDatabase(process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string);
@@ -27,10 +28,31 @@ export default async function Post({ params }: any) {
   } 
 
   const renderRichText = (richTextArray: any[]) => {
+    richTextArray.map((text, index) => {
+      console.log('rich text:', text)
+      console.log('rich index:', text)
+    });
+    if(richTextArray.length === 0) {
+      console.log('길이xxxx')
+      return <br/>
+    }
+
     return richTextArray.map((text, index) => (
-      <span key={index}>
-        {text.plain_text}
-      </span>
+      <>
+        {/* <span key={index}>
+          {text.plain_text}
+        </span> */}
+        <span key={index}>
+          {text.plain_text.split('\n').map((part:string, partIndex: number) => (
+            <React.Fragment key={index}>
+              {part}
+              {/* 마지막 조각이  */}
+              {partIndex < text.plain_text.split('\n').length - 1 && <br />}
+            </React.Fragment>
+          ))}
+        </span>
+
+      </>
     ));
   };
 
@@ -38,6 +60,7 @@ export default async function Post({ params }: any) {
     console.log('최상위 블럭:',block)
     switch (block.type) {
       case 'paragraph':
+        console.log('paragraph 블럭:',block.paragraph.rich_text)
         return <p>{renderRichText(block.paragraph.rich_text)}</p>;
       case 'heading_1':
         return <h1>{renderRichText(block.heading_1.rich_text)}</h1>;
@@ -86,6 +109,7 @@ export default async function Post({ params }: any) {
           <pre>
           <code>
             {renderRichText(block.code.rich_text)}
+            {block.code.caption && <figcaption>{block.code.caption[0].plain_text}</figcaption>}
           </code>
         </pre>
         );
@@ -98,7 +122,7 @@ export default async function Post({ params }: any) {
           </figure>
         );
       case 'callout':
-        console.log('콜아웃 블럭:', block)
+        console.log('콜아웃 블럭:', block.callout)
         return (
           <div style={{ border: '1px solid #e0e0e0', borderRadius: '5px', padding: '10px', display: 'flex', alignItems: 'center', backgroundColor: '#f5f5f5' }}>
             <span style={{ marginRight: '10px' }}>{block.callout.icon.emoji}</span>
