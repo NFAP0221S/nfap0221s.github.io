@@ -21,8 +21,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-      # - name: Setup environment variables
-      #   run: |
 
       - name: Install dependencies
         working-directory: ./gpblog
@@ -32,12 +30,19 @@ jobs:
         working-directory: ./gpblog
         run: npm run build
 
-      # - name: Export static files
-      #   working-directory: ./gpblog
-      #   run: npm run export
+      - name: No jekyll setup
+        working-directory: ./gpblog
+        run: touch out/.nojekyll
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "NFAP0221S"
+          git config --global user.email "vawav11@gmail.com"
 
       - name: Deploy to GitHub Pages
         working-directory: ./gpblog
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run deploy
+          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.ACTION_TOKEN }}@github.com/NFAP0221S/NFAP0221S.github.io.git
+          npm run deploy
