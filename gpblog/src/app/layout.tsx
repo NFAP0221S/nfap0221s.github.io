@@ -16,22 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-
       <head>
         <title>My Blog</title>
       </head>
       <body>
-          <header>
-            <nav>
-              <a href="/">Home</a>
-              <a href="/about">About</a>
-              <a href="/posts">post</a>
-            </nav>
-          </header>
-          <main className={inter.className}>{children}</main>
-          <footer>
-            <p>푸터</p>
-          </footer>
+          <main className={inter.className}>
+            {children}
+          </main>
       </body>
     </html>
   );
