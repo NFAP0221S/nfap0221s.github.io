@@ -2,11 +2,26 @@ import React from 'react';
 
 const Sidebar = () => (
   <aside>
+    <div>사이드 바</div>
     <section>
-      <h2>Popular Posts</h2>
+      <div>Frontend</div>
       <ul>
-        <li><a href="/posts/1">Post 1</a></li>
-        <li><a href="/posts/2">Post 2</a></li>
+        <li><a href="/posts">- Post 1</a></li>
+        <li><a href="/posts">- Post 2</a></li>
+      </ul>
+    </section>
+    <section>
+      <div>Backend</div>
+      <ul>
+        <li><a href="/posts">- Post 1</a></li>
+        <li><a href="/posts">- Post 2</a></li>
+      </ul>
+    </section>
+    <section>
+      <div>Backend</div>
+      <ul>
+        <li><a href="/posts">- Post 1</a></li>
+        <li><a href="/posts">- Post 2</a></li>
       </ul>
     </section>
   </aside>
