@@ -18,6 +18,7 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <title>My Blog</title>
+        <link href="./output.css" rel="stylesheet"></link>
       </head>
       <body>
           <main className={inter.className}>
