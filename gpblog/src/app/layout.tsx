@@ -18,7 +18,8 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <title>My Blog</title>
-        <link href="./output.css" rel="stylesheet"></link>
+        {/* <link href="./output.css" rel="stylesheet"></link> */}
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
       </head>
       <body>
           <main className={inter.className}>
