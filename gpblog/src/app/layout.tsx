@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Providers from "./Providers";
+
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,13 +20,14 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <title>My Blog</title>
-        {/* <link href="./output.css" rel="stylesheet"></link> */}
-        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
       </head>
       <body>
+        <Providers>
           <main className={inter.className}>
             {children}
           </main>
+        </Providers>
       </body>
     </html>
   );
