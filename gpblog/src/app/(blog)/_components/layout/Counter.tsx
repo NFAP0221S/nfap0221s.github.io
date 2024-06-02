@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useEffect, useState } from "react";
 
 export default function Counter() {
@@ -12,7 +12,6 @@ export default function Counter() {
 
   return (
     <div>
-      <h1>about 입니다.</h1>
       <h1>count test {count}</h1>
       <button onClick={() => setCount(prev => prev + 1)}>버튼</button>
     </div>
