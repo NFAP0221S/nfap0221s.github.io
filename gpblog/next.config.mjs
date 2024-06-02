@@ -5,7 +5,7 @@ const nextConfig = {
   output: "export",
   // basePath: "",
   basePath: isProd ? "/nfap0221s.github.io" : "",
-  assetPrefix: isProd ? "/nfap0221s.github.io" : "",
+  assetPrefix: isProd ? "/nfap0221s.github.io/" : "",
   swcMinify: true,
   trailingSlash: true,
   images: {
