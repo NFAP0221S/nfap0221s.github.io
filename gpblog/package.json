@@ -5,7 +5,7 @@
   "homepage": "https://github.com/NFAP0221S/NFAP0221S.github.io",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && touch out/.nojekyll",
     "deploy": "gh-pages -d out -f",
     "start": "next start",
     "lint": "next lint"
