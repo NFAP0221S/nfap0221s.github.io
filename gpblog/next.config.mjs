@@ -3,9 +3,9 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
   output: "export",
-  basePath: isProd ? "/nfap0221s.github.io" : "",
+  basePath: "",
   assetPrefix: isProd ? "/nfap0221s.github.io/" : "",
-  swcMinify: true,
+  // swcMinify: true,
   trailingSlash: true,
   images: {
     unoptimized: true,
