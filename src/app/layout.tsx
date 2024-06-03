@@ -22,8 +22,8 @@ export default function RootLayout({
       <head>
         <title>My Blog</title>
         <script src="https://cdn.tailwindcss.com"></script>
-        {/* <script src="./nfap0221s.github.io/_next/static/chunks/main.js"></script> */}
-        {/* <link rel="stylesheet" href="/nfap0221s.github.io/_next/static/css/styles.css" /> */}
+        <script src="/nfap0221s.github.io/_next/static/chunks/main.js"></script>
+        <link rel="stylesheet" href="/nfap0221s.github.io/_next/static/css/styles.css" />
       </head>
       <body>
         <Providers>

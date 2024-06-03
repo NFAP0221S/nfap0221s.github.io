@@ -23,15 +23,15 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        working-directory: ./gpblog
+        # working-directory: ./gpblog
         run: npm install
 
       - name: Build project
-        working-directory: ./gpblog
+        # working-directory: ./gpblog
         run: npm run build
 
       - name: No jekyll setup
-        working-directory: ./gpblog
+        # working-directory: ./gpblog
         run: echo "" > ./out/.nojekyll
         # run: touch out/.nojekyll
 
@@ -41,7 +41,7 @@ jobs:
           git config --global user.email "vawav11@gmail.com"
 
       - name: Deploy to GitHub Pages
-        working-directory: ./gpblog
+        # working-directory: ./gpblog
         env:
           GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
         run: |
