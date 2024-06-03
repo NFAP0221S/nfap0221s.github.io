@@ -2,7 +2,7 @@
   "name": "gpblog",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/NFAP0221S/NFAP0221S.github.io",
+  "homepage": "https://github.com/nfap0221s/nfap0221s.github.io",
   "scripts": {
     "dev": "next dev",
     "build": "next build && touch out/.nojekyll",
