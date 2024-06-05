@@ -6,7 +6,7 @@ const nextConfig = {
   basePath: "",
   // assetPrefix: "",
   // basePath: isProd ? "/nfap0221s.github.io" : "",
-  assetPrefix: isProd ? "/nfap0221s.github.io/" : "",
+  assetPrefix: isProd ? "/" : "",
   // swcMinify: true,
   // trailingSlash: true,
   images: {
