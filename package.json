@@ -2,10 +2,10 @@
   "name": "gpblog",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/nfap0221s/",
+  "homepage": "https://nfap0221s.github.io/",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && touch out/.nojekyll",
+    "build": "rm -rf node_modules/.cache && next build && touch out/.nojekyll",
     "deploy": "gh-pages -d out -f",
     "start": "next start",
     "lint": "next lint"
