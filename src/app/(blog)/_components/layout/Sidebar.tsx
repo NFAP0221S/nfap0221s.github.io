@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 export default function Sidebar() {
@@ -8,22 +9,25 @@ export default function Sidebar() {
       <section className="p-4">
         <div className="font-bold">Frontend</div>
         <ul>
-          <li><a href="/posts">- Post 1</a></li>
-          <li><a href="/posts">- Post 2</a></li>
+          <Link href="/posts">- Post 1</Link>
+          <br />
+          <Link href="/posts">- Post 2</Link>
         </ul>
       </section>
       <section className="p-4">
         <div className="font-bold">Backend</div>
         <ul>
-          <li><a href="/posts">- Post 1</a></li>
-          <li><a href="/posts">- Post 2</a></li>
+          <Link href="/posts">- Post 1</Link>
+          <br />
+          <Link href="/posts">- Post 2</Link>
         </ul>
       </section>
       <section className="p-4">
         <div className="font-bold">DevOps</div>
         <ul>
-          <li><a href="/posts">- Post 1</a></li>
-          <li><a href="/posts">- Post 2</a></li>
+          <Link href="/posts">- Post 1</Link>
+          <br />
+          <Link href="/posts">- Post 2</Link>
         </ul>
       </section>
     </aside>
