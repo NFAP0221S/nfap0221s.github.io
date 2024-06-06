@@ -11,10 +11,7 @@ export default function Providers(props: Props) {
 
   return (
     <ThemeProvider defaultTheme="system" attribute="class">
-      <div className="min-h-screen">
-      {/* <div className="text-gray-700 dark:text-gray-200 dark:bg-gray-700 min-h-screen select-none transition-colors duration-300"> */}
         {children}
-      </div>
     </ThemeProvider>
   );
 }
