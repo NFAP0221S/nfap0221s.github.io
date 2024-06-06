@@ -6,7 +6,7 @@ interface Props{
   list: Post[]
 }
 
-const PostsList: React.FC<Props> = ({ list }) => {
+export default function PostsList({ list }: Props) {
 
   return (
     <ul>
@@ -18,5 +18,3 @@ const PostsList: React.FC<Props> = ({ list }) => {
     </ul>
   );
 };
-
-export default PostsList;

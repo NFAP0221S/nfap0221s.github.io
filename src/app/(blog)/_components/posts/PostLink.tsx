@@ -7,7 +7,7 @@ interface PostLinkProps {
   title: string;
 }
 
-const PostLink: React.FC<PostLinkProps> = ({ id, title }) => {
+export default function PostLink({ id, title }:PostLinkProps) {
   
   return (
     <Link href={`/posts/${id}`}>
@@ -15,5 +15,3 @@ const PostLink: React.FC<PostLinkProps> = ({ id, title }) => {
     </Link>
   );
 };
-
-export default PostLink;
