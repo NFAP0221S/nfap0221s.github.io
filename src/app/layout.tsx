@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Providers from "./Providers";
+import ThemeProvider from "../components/theme-provider";
 
 import "./globals.css";
 import Script from "next/script";
@@ -24,11 +24,16 @@ export default function RootLayout({
         <Script src="https://cdn.tailwindcss.com" />
       </head>
       <body>
-        <Providers>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <main className={inter.className}>
             {children}
           </main>
-        </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );
