@@ -1,9 +1,8 @@
 import { fetchPosts } from "@/services/posts";
 import { Post } from "@/lib/notion";
-import SidebarContent from "./contents/SidebarContents";
+import SidebarContent from "./SidebarContents";
 
 export default async function Sidebar() {
-  // const { GRAY700200, GRAY200800 } = useThemeClass(); 
   const postsList: Post[] = await fetchPosts()
 
   return(
@@ -51,28 +50,3 @@ export default async function Sidebar() {
     // </ScrollArea>
   )
 };
-
-// import { Separator } from "@/components/ui/separator"
-
-// const tags = Array.from({ length: 50 }).map(
-//   (_, i, a) => `v1.2.0-beta.${a.length - i}`
-// )
-
-// export function ScrollAreaDemo() {
-//   return (
-//     <ScrollArea className="h-72 w-48 rounded-md border">
-//       <div className="p-4">
-//         <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
-//         {tags.map((tag) => (
-//           <>
-//             <div key={tag} className="text-sm">
-//               {tag}
-//             </div>
-//             <Separator className="my-2" />
-//           </>
-//         ))}
-//       </div>
-//     </ScrollArea>
-//   )
-// }
-
