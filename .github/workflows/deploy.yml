@@ -30,9 +30,9 @@ jobs:
         # working-directory: ./gpblog
         run: npm run build
 
-      - name: No jekyll setup
+      # - name: No jekyll setup
         # working-directory: ./gpblog
-        run: echo "" > ./out/.nojekyll
+        # run: echo "" > ./out/.nojekyll
         # run: touch out/.nojekyll
 
       - name: Configure Git
@@ -47,3 +47,17 @@ jobs:
         run: |
           git remote set-url origin https://x-access-token:${{ secrets.ACTION_TOKEN }}@github.com/NFAP0221S/NFAP0221S.github.io.git
           npm run deploy
+
+      - name: nojekyll setup
+        # working-directory: ./gpblog
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+        run: |
+          git config --global user.name "NFAP0221S"
+          git config --global user.email "vawav11@gmail.com"
+          git clone --branch gh-pages https://x-access-token:${{ secrets.ACTION_TOKEN }}@github.com/NFAP0221S/NFAP0221S.github.io.git gh-pages
+          echo "" > gh-pages/.nojekyll
+          cd gh-pages
+          git add .nojekyll
+          git commit -m "Add .nojekyll file" || echo "No changes to commit"
+          git push origin gh-pages
