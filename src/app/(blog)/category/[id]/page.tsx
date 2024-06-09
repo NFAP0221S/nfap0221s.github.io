@@ -36,7 +36,7 @@ export default async function Category({ params }: any) {
   }
 
   const renderCards = (block: any) => {
-    console.log('blocksblocks', block);
+    // console.log('blocksblocks', block);
     const type = block.type
     const id = block.id
     const title = block.child_page?.title
