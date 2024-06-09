@@ -12,7 +12,7 @@ export default function PostsList({ list }: Props) {
     <ul>
       {list?.map((post) => (
         <li key={post.id}>
-          <PostLink id={post.id} title={post.properties["이름"].title[0].plain_text} />
+          <PostLink id={post.id} title={post.properties.name.title[0].plain_text} />
         </li>
       ))}
     </ul>

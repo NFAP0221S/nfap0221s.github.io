@@ -5,9 +5,15 @@ const notion = new Client({ auth: process.env.NEXT_PUBLIC_NOTION_API_KEY });
 export interface Post {
   id: string;
   properties: {
-    이름: {
+    name: {
       title: { plain_text: string }[];
-    };
+    },
+    tag: {
+      multi_select: { name: string }[];
+    },
+    cat: {
+      rich_text: { plain_text: string }[];
+    },
   };
 }
 

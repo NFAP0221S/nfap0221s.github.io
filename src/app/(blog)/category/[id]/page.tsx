@@ -9,20 +9,23 @@ export async function generateStaticParams() {
     throw new Error("NEXT_PUBLIC_NOTION_DATABASE_ID is not defined");
   }
   const posts = await getDatabase(databaseId);
+  return posts.map((post) => ({
+    id: post.id,
+  }));
 
-  const allBlockIds = await Promise.all(
-    posts.map(async (post) => {
-      const blocks: any = await getBlocks(post.id);
+  // const allBlockIds = await Promise.all(
+  //   posts.map(async (post) => {
+  //     const blocks: any = await getBlocks(post.id);
 
-      // block.type이 'child_page'인 경우에만 반환
-      return blocks
-        .filter((block: { type: string; }) => block.type === 'child_page')
-        .map((block: { id: string; }) => ({ id: block.id }));
-    })
-  );
+  //     // block.type이 'child_page'인 경우에만 반환
+  //     return blocks
+  //       .filter((block: { type: string; }) => block.type === 'child_page')
+  //       .map((block: { id: string; }) => ({ id: block.id }));
+  //   })
+  // );
 
-  // 플랫하게 변환하여 모든 블록 ID를 반환
-  return allBlockIds.flat();
+  // // 플랫하게 변환하여 모든 블록 ID를 반환
+  // return allBlockIds.flat();
 }
 
 export default async function Category({ params }: any) {
