@@ -10,10 +10,11 @@ import { PartialBlockObjectResponse } from '@notionhq/client/build/src/api-endpo
 
 interface Props {
   categoryList: Post[]
-  subCategoryList: PartialBlockObjectResponse[][]
+  // subCategoryList: PartialBlockObjectResponse[][]
 }
 
-export default function SidebarContent({ categoryList, subCategoryList }: Props) {
+export default function SidebarContent({ categoryList }: Props) {
+// export default function SidebarContent({ categoryList, subCategoryList }: Props) {
 
   return (
     <ScrollArea className={`fixed rounded-md border shadow-lg transition-transform -translate-x-full sm:translate-x-0`}>
@@ -27,8 +28,8 @@ export default function SidebarContent({ categoryList, subCategoryList }: Props)
             <div className="text-md">
               {post.properties["이름"].title[0].plain_text}
             </div>
-            <SubCategories blocks={subCategoryList[index]} />
-            {/* <SubCategories subCategoryList={subCategoryList} /> */}
+            <SubCategories id={post.id} />
+            {/* <SubCategories blocks={subCategoryList[index]} /> */}
             <Separator className="my-2" />
           </React.Fragment>
         ))}

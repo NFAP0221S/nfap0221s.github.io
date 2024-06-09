@@ -3,39 +3,33 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 
 export async function generateStaticParams() {
+  const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string;
+  if (!databaseId) {
+    throw new Error("NEXT_PUBLIC_NOTION_DATABASE_ID is not defined");
+  }
+  const posts = await getDatabase(databaseId);
+  
+  // 모든 포스트의 블록 ID를 모아 리스트 생성
+  const allBlockIds = await Promise.all(
+    posts.map(async (post) => {
+      const blocks = await getBlocks(post.id);
+      return blocks.map(block => ({ id: block.id }));
+    })
+  );
 
-  /* 테스트 */
-  const posts = await getDatabase(process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string);
-  // const postParams = posts.map((post) => ({ 
-  //   id: post.id 
-  // }));
-
-  /* 서브 카테고리 */
-  const subCategoryPromises = posts.map(post => getBlocks(post.id));
-  const subCategoryLists = await Promise.all(subCategoryPromises);
-
-  const subCategoryParams = subCategoryLists.flat().map(block => ({
-    id: block.id,
-  }));
-
-  // return [...postParams, ...subCategoryParams];
-  return [...subCategoryParams];
+  // 플랫하게 변환하여 모든 블록 ID를 반환
+  return allBlockIds.flat();
 }
 
-interface Props {
-  params: any
-}
-
-export default async function Post({ params }: Props) {
+export default async function Post({ params }: any) {
   const { id } = params;
+  
   const page: any = await getPage(id);
-  // const blocks = await getBlocks(id);
-  const blocks = await getBlocks(page.id);
+  const blocks = await getBlocks(id);
 
-  if (!page) {
+  if (!page || !blocks) {
     notFound();
   }
-
   const  isChildren = async (id: string, text: string) => {
     const blocks: any = await getBlocks(id);
     if(text === '토글 자식:') {
