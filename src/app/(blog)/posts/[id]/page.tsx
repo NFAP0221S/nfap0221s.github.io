@@ -5,10 +5,10 @@ import React from 'react';
 export async function generateStaticParams() {
 
   /* 테스트 */
-  const posts = await getDatabase(process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string);
-  const postParams = posts.map((post) => ({ 
-    id: post.id 
-  }));
+  // const posts = await getDatabase(process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string);
+  // const postParams = posts.map((post) => ({ 
+  //   id: post.id 
+  // }));
 
   /* 서브 카테고리 */
   const subCategoryPromises = posts.map(post => getBlocks(post.id));
@@ -18,7 +18,8 @@ export async function generateStaticParams() {
     id: block.id,
   }));
 
-  return [...postParams, ...subCategoryParams];
+  // return [...postParams, ...subCategoryParams];
+  return [...subCategoryParams];
 }
 
 interface Props {
