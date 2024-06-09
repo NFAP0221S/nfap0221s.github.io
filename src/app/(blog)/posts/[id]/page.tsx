@@ -8,12 +8,16 @@ export async function generateStaticParams() {
     throw new Error("NEXT_PUBLIC_NOTION_DATABASE_ID is not defined");
   }
   const posts = await getDatabase(databaseId);
-  
-  // 모든 포스트의 블록 ID를 모아 리스트 생성
+
   const allBlockIds = await Promise.all(
     posts.map(async (post) => {
-      const blocks = await getBlocks(post.id);
-      return blocks.map(block => ({ id: block.id }));
+      const blocks: any = await getBlocks(post.id);
+      console.log('blocksblocks', blocks);
+
+      // block.type이 'child_page'인 경우에만 반환
+      return blocks
+        .filter((block: { type: string; }) => block.type === 'child_page')
+        .map((block: { id: string; }) => ({ id: block.id }));
     })
   );
 
