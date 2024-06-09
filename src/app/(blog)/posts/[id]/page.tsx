@@ -3,16 +3,34 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 
 export async function generateStaticParams() {
+
+  /* 테스트 */
   const posts = await getDatabase(process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string);
-  return posts.map((post) => ({
-    id: post.id,
+  const postParams = posts.map((post) => ({ 
+    id: post.id 
   }));
+
+  /* 서브 카테고리 */
+  const subCategoryPromises = posts.map(post => getBlocks(post.id));
+  const subCategoryLists = await Promise.all(subCategoryPromises);
+
+  const subCategoryParams = subCategoryLists.flat().map(block => ({
+    id: block.id,
+  }));
+
+  return [...postParams, ...subCategoryParams];
 }
 
-export default async function Post({ params }: any) {
+interface Props {
+  params: any
+  from: string
+}
+
+export default async function Post({ params, from }: Props) {
   const { id } = params;
   const page: any = await getPage(id);
-  const blocks = await getBlocks(id);
+  // const blocks = await getBlocks(id);
+  const blocks = await getBlocks(page.id);
 
   if (!page) {
     notFound();
@@ -158,10 +176,10 @@ export default async function Post({ params }: any) {
     }
   };
 
-
   return (
     <div>
-      <h1>{page.properties['이름'].title[0].plain_text}</h1>
+      {/* <h1>{page.properties['이름'].title[0].plain_text}</h1> */}
+      <h1>{page.properties.title.title[0].plain_text}</h1>
       <div>
         {blocks.map((block) => (
           <div key={block.id}>{renderBlock(block)}</div>

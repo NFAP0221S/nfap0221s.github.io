@@ -8,7 +8,7 @@ export default function Header() {
   const { GRAY700200, GRAY200800 } = useThemeClass(); 
 
   return(
-    <header className={`flex items-center justify-between p-4 text-${GRAY200800}`}>
+    <header className={`flex items-center justify-around p-4`}>
       <nav className='flex items-center'>
         <Link href="/" className="mr-4">Home</Link>
         <Link href="/about" className="mr-4">About</Link>
