@@ -53,9 +53,9 @@ export default async function Category({ params }: any) {
 
   return (
     <div title='카테고리'>
-      <ul className='flex flex-wrap'>
+      <ul className='flex flex-wrap justify-center'>
         {blocks.map((block: any) => (
-          <li key={block.id} className='p-4'>
+          <li key={block.id} >
             {renderCards(block)}
           </li>
         ))}
