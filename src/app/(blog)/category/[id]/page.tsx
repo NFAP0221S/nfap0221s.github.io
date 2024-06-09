@@ -37,12 +37,13 @@ export default async function Category({ params }: any) {
 
   const renderCards = (block: any) => {
     // console.log('blocksblocks', block);
-    const type = block.type
-    const id = block.id
-    const title = block.child_page?.title
-    const date = block.created_time
+    const type = block?.type
+    const id = block?.id
+    const title = block?.child_page?.title
+    const date = block?.created_time
     // console.log('titletitle', title);
     if(type === 'child_page') {
+      if(type && id && title && date)
       return <_Card key={id} id={id} title={title} date={date} />
     }
   };

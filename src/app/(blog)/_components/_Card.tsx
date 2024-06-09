@@ -9,7 +9,7 @@ interface CardProps {
 
 export default async function _Card({ id, title, date }: CardProps) {
   const blocks: any = await getBlocks(id);
-  const text = blocks[1]?.paragraph.rich_text[0].plain_text
+  const text = blocks[1]?.paragraph?.rich_text[0]?.plain_text
   const shortText = text ? text.substring(0, 8) : '';
   const dateSlcie = date ? date.substring(0, 10) : '';
 
