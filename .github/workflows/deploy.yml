@@ -23,17 +23,10 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        # working-directory: ./gpblog
         run: npm install
 
       - name: Build project
-        # working-directory: ./gpblog
         run: npm run build
-
-      # - name: No jekyll setup
-        # working-directory: ./gpblog
-        # run: echo "" > ./out/.nojekyll
-        # run: touch out/.nojekyll
 
       - name: Configure Git
         run: |
@@ -41,7 +34,6 @@ jobs:
           git config --global user.email "vawav11@gmail.com"
 
       - name: Deploy to GitHub Pages
-        # working-directory: ./gpblog
         env:
           GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
         run: |
@@ -49,12 +41,9 @@ jobs:
           npm run deploy
 
       - name: nojekyll setup
-        # working-directory: ./gpblog
         env:
           GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
         run: |
-          git config --global user.name "NFAP0221S"
-          git config --global user.email "vawav11@gmail.com"
           git clone --branch gh-pages https://x-access-token:${{ secrets.ACTION_TOKEN }}@github.com/NFAP0221S/NFAP0221S.github.io.git gh-pages
           echo "" > gh-pages/.nojekyll
           cd gh-pages
