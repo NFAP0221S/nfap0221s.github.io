@@ -5,7 +5,7 @@ import React from 'react';
 export async function generateStaticParams() {
 
   /* 테스트 */
-  // const posts = await getDatabase(process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string);
+  const posts = await getDatabase(process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string);
   // const postParams = posts.map((post) => ({ 
   //   id: post.id 
   // }));
