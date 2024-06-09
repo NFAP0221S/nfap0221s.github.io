@@ -14,7 +14,7 @@ export default async function SubCategories({ id }: Props) {
     switch (subCategory.type) {
       case 'child_page':
         return (
-          <Link href={`/posts/${subCategory.id}/`} className="text-md">
+          <Link href={`/category/${subCategory.id}/`} className="text-md">
             <div>{subCategory.child_page.title}</div>
           </Link>
         );
