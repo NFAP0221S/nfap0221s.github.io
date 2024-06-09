@@ -23,10 +23,9 @@ export async function generateStaticParams() {
 
 interface Props {
   params: any
-  from: string
 }
 
-export default async function Post({ params, from }: Props) {
+export default async function Post({ params }: Props) {
   const { id } = params;
   const page: any = await getPage(id);
   // const blocks = await getBlocks(id);
