@@ -38,10 +38,10 @@ export default async function Post({ params }: Props) {
   const  isChildren = async (id: string, text: string) => {
     const blocks: any = await getBlocks(id);
     if(text === '토글 자식:') {
-      console.log(text, blocks[0].paragraph.rich_text[0].plain_text)
+      // console.log(text, blocks[0].paragraph.rich_text[0].plain_text)
       return blocks[0].paragraph.rich_text[0].plain_text
     }
-    console.log(text, blocks[0]?.bulleted_list_item)
+    // console.log(text, blocks[0]?.bulleted_list_item)
   } 
 
   const renderTable = async (block: any) => {
@@ -63,11 +63,11 @@ export default async function Post({ params }: Props) {
 
   const renderRichText = (richTextArray: any[]) => {
     richTextArray.map((text, index) => {
-      console.log('rich text:', text)
-      console.log('rich index:', text)
+      // console.log('rich text:', text)
+      // console.log('rich index:', text)
     });
     if(richTextArray.length === 0) {
-      console.log('길이xxxx')
+      // console.log('길이xxxx')
       return <br/>
     }
 
@@ -91,10 +91,10 @@ export default async function Post({ params }: Props) {
   };
 
   const renderBlock = (block: any) => {
-    console.log('최상위 블럭:',block)
+    // console.log('최상위 블럭:',block)
     switch (block.type) {
       case 'paragraph':
-        console.log('paragraph 블럭:',block.paragraph.rich_text)
+        // console.log('paragraph 블럭:',block.paragraph.rich_text)
         return <p>{renderRichText(block.paragraph.rich_text)}</p>;
       case 'heading_1':
         return <h1>{renderRichText(block.heading_1.rich_text)}</h1>;
@@ -119,7 +119,7 @@ export default async function Post({ params }: Props) {
           </div>
         );
       case 'toggle':
-        console.log('토글 블럭', block)
+        // console.log('토글 블럭', block)
 
         let innerText: Promise<any>;
         if(block.has_children){
@@ -138,7 +138,7 @@ export default async function Post({ params }: Props) {
           </details>
         );
       case 'code':
-        console.log('코드 블럭:', block)
+        // console.log('코드 블럭:', block)
         return (
           <pre>
           <code>
@@ -148,7 +148,7 @@ export default async function Post({ params }: Props) {
         </pre>
         );
       case 'image':
-        console.log('이미지 블럭:', block.image.caption[0].plain_text)
+        // console.log('이미지 블럭:', block.image.caption[0].plain_text)
         return (
           <figure>
             <img src={block.image.file.url} alt={block.image.caption} style={{ maxWidth: '100%' }} />
@@ -156,7 +156,7 @@ export default async function Post({ params }: Props) {
           </figure>
         );
       case 'callout':
-        console.log('콜아웃 블럭:', block.callout)
+        // console.log('콜아웃 블럭:', block.callout)
         return (
           <div style={{ border: '1px solid #e0e0e0', borderRadius: '5px', padding: '10px', display: 'flex', alignItems: 'center', backgroundColor: '#f5f5f5' }}>
             <span style={{ marginRight: '10px' }}>{block.callout.icon.emoji}</span>
@@ -164,13 +164,13 @@ export default async function Post({ params }: Props) {
           </div>
       );
       case 'divider':
-        console.log('구분선 블럭: <hr /> 처리')
+        // console.log('구분선 블럭: <hr /> 처리')
         return  <hr />
       case 'table':
-        console.log('테이블 블럭:', block);
+        // console.log('테이블 블럭:', block);
         return renderTable(block);
       default:
-        console.log('디폴트 타입 블럭:', block)
+        // console.log('디폴트 타입 블럭:', block)
         return <div>Unsupported block type: {block.type}</div>;
     }
   };
