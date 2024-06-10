@@ -55,9 +55,13 @@ export default async function Category({ params }: any) {
     <div title='카테고리'>
       <ul className='flex flex-wrap justify-center'>
         {blocks.map((block: any) => (
-          <li key={block.id} >
-            {renderCards(block)}
-          </li>
+          <>
+            {block?.type === 'child_page' &&
+              <li key={block.id} className='w-full sm:w-1/1 md:w-1/1 lg:w-1/2 p-2' >
+                {renderCards(block)}
+              </li>
+            }
+          </>
         ))}
       </ul>
     </div>
