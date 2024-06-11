@@ -18,7 +18,7 @@ export default async function SidebarContent({ categoryList }: Props) {
   };
 
   return (
-    <ScrollArea className={`fixed rounded-md border shadow-lg transition-transform -translate-x-full sm:translate-x-0`}>
+    <ScrollArea className={`fixed rounded-md border shadow-lg transition-transform -translate-x-full md:translate-x-0`}>
       <div className="p-4">
         <h4 className="mb-4 text-md font-medium leading-none">
           Category
