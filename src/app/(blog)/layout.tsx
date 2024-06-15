@@ -9,17 +9,20 @@ import _BreadCrumb from './_components/_BreadCrumb';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className='relative flex min-h-screen flex-col bg-white'>
       <Header />
-      <main className="flex flex-1 justify-center px-6 pt-16" title="메인 콘텐츠">
-        <div className="flex justify-center md:w-64 w-0 flex-shrink-1 ">
-          <Sidebar />
-        </div>
-        <div className="flex flex-1 justify-center">
-          <div className="flex flex-col flex-1 " style={{ maxWidth: '1200px' }}>
-            <_BreadCrumb />
-            <main className="flex-1 overflow-y-auto">
-              {children}
+      <main className='flex-1'>
+        <div className='boder-b'>
+          <div className='container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10'>
+            <Sidebar />
+            {/* <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_100px]"> 메인 옆 오른쪽 side 그리드 필요할 경우 이것 사용 */}
+            <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr]">
+              <div className="flex flex-col flex-1 " style={{ maxWidth: '1200px' }}>
+                <_BreadCrumb />
+                <main className="flex-1 overflow-y-auto">
+                  {children}
+                </main>
+              </div>
             </main>
           </div>
         </div>
