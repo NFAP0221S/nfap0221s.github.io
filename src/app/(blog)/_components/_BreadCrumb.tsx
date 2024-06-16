@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function _BreadCrumb() {
   return (
-    <Breadcrumb className='p-4 sticky top-14 bg-white bg-opacity-80 backdrop-blur-sm'>
+    <Breadcrumb className='p-4 sticky top-14 bg-gray bg-opacity-80 backdrop-blur'>
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
