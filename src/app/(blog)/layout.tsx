@@ -6,6 +6,7 @@ import Header from './_components/Header';
 import Sidebar from './_components/sidebar/Sidebar';
 import Footer from './_components/Footer';
 import _BreadCrumb from './_components/_BreadCrumb';
+import { MdDensityMedium } from "react-icons/md";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,7 +19,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {/* <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_100px]"> 메인 옆 오른쪽 side 그리드 필요할 경우 이것 사용 */}
             <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr] bg-gray">
               <div className="flex flex-col flex-1 " style={{ maxWidth: '1200px' }}>
-                <_BreadCrumb />
+                <div className='flex items-center z-30'>
+                  <div className='p-2 md:hidden'>
+                    <MdDensityMedium />
+                  </div>
+                  <_BreadCrumb />
+                </div>
                 <main className="flex-1 overflow-y-auto bg-gray">
                   {children}
                 </main>
