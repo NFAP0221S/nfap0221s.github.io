@@ -20,9 +20,6 @@ export default async function SidebarContent({ categoryList }: Props) {
   return (
     <ScrollArea>
       <div className="p-4">
-        {/* <h4 className="mb-4 text-md font-medium leading-none">
-          Category
-        </h4> */}
         {메인카테고리.map(main => {
           const 메인태그 = main.properties.tag.multi_select[0].name;
           const 매치된_서브_카테고리 = getSubCategories(메인태그);
@@ -36,9 +33,6 @@ export default async function SidebarContent({ categoryList }: Props) {
                 <div className="ml-4">
                   {매치된_서브_카테고리.map(sub => (
                     <React.Fragment key={sub.id}>
-                      {/* <div className="text-sm mb-1">
-                        {sub.properties["name"].title[0].plain_text}
-                      </div> */}
                       <SubCategories id={sub.id} subCategory={sub.properties.name.title[0].plain_text} />
                     </React.Fragment>
                   ))}

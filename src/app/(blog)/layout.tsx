@@ -6,9 +6,12 @@ import Header from './_components/Header';
 import Sidebar from './_components/sidebar/Sidebar';
 import Footer from './_components/Footer';
 import _BreadCrumb from './_components/_BreadCrumb';
-import { MdDensityMedium } from "react-icons/md";
+import { MdDensityMedium as MenuButton} from "react-icons/md";
+import { _Sheet } from './_components/_Sheet';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  // const []
+
   return (
     <div className='relative flex min-h-screen flex-col bg-gray'>
       <Header />
@@ -20,8 +23,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <main className='relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr] bg-gray'>
               <div className='flex flex-col flex-1' style={{ maxWidth: '1200px' }}>
                 <div className='flex items-center sticky top-14 z-30 bg-gray bg-opacity-80 backdrop-blur'>
-                  <div className='p-2 md:hidden'>
-                    <MdDensityMedium />
+                  <div className='p-2 md:hidden cursor-pointer'>
+                    <_Sheet/>
+                    {/* <MenuButton /> */}
                   </div>
                   <_BreadCrumb />
                 </div>
