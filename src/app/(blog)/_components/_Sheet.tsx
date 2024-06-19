@@ -1,7 +1,3 @@
-// import { Button } from "@/components/ui/button"
-// import { Input } from "@/components/ui/input"
-// import { Label } from "@/components/ui/label"
-import { MdDensityMedium as MenuButton} from "react-icons/md";
 
 import {
   Sheet,
@@ -13,6 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { MdDensityMedium as MenuButton} from "react-icons/md";
 import Sidebar from "./sidebar/Sidebar";
 import SidebarContent from "./sidebar/SidebarContents";
 import { fetchPosts } from "@/services/posts";

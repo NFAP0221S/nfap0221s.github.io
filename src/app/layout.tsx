@@ -4,6 +4,7 @@ import ThemeProvider from "../components/theme-provider";
 
 import "./globals.css";
 import Script from "next/script";
+import ReactQueryProvider from "@/components/query-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,16 +25,18 @@ export default function RootLayout({
         <Script src="https://cdn.tailwindcss.com" />
       </head>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <main className={inter.className}>
-            {children}
-          </main>
-        </ThemeProvider>
+        <ReactQueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+            >
+            <main className={inter.className}>
+              {children}
+            </main>
+          </ThemeProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
