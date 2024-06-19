@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === 'production';
+const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID
 
 const nextConfig = {
   output: "export",
@@ -35,7 +36,7 @@ const nextConfig = {
     return [
       {
         source: '/api/posts',
-        destination: 'https://api.notion.com/v1/databases/bbf5e4a9318a4da199df107b0d42de80/query',
+        destination: `https://api.notion.com/v1/databases/${databaseId}/query`,
       },
     ];
   },

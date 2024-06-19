@@ -26,11 +26,11 @@ export default async function SidebarContent({ categoryList }: Props) {
 
           return (
             <React.Fragment key={main.id}>
-              <div className="text-md font-semibold mb-2">
+              <div className="text-md font-semibold mb-2" title='메인_카테고리'>
                 {main.properties.name.title[0].plain_text}
               </div>
               {매치된_서브_카테고리.length > 0 && (
-                <div className="ml-4">
+                <div title='서브_카테고리'>
                   {매치된_서브_카테고리.map(sub => (
                     <React.Fragment key={sub.id}>
                       <SubCategories id={sub.id} subCategory={sub.properties.name.title[0].plain_text} />
