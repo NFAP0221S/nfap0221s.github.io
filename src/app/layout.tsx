@@ -5,6 +5,7 @@ import ThemeProvider from "../components/theme-provider";
 import "./globals.css";
 import Script from "next/script";
 import ReactQueryProvider from "@/components/query-provider";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,6 +37,7 @@ export default function RootLayout({
               {children}
             </main>
           </ThemeProvider>
+          <ReactQueryDevtools />
         </ReactQueryProvider>
       </body>
     </html>
