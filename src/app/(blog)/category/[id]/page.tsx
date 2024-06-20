@@ -55,13 +55,13 @@ export default async function Category({ params }: any) {
     <div title='카테고리'>
       <ul className='flex flex-wrap justify-center'>
         {blocks.map((block: any) => (
-          <>
+          <React.Fragment key={block.id}>
             {block?.type === 'child_page' &&
-              <li key={block.id} className='w-full sm:w-1/1 md:w-1/1 lg:w-1/2 p-2' >
+              <li className='w-full sm:w-1/1 md:w-1/1 lg:w-1/2 p-2' >
                 {renderCards(block)}
               </li>
             }
-          </>
+          </React.Fragment>
         ))}
       </ul>
     </div>

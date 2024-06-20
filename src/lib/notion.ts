@@ -5,13 +5,13 @@ const notion = new Client({ auth: process.env.NEXT_PUBLIC_NOTION_API_KEY });
 export interface Post {
   id: string;
   properties: {
-    name: {
+    category: {
       title: { plain_text: string }[];
     },
-    tag: {
+    group: {
       multi_select: { name: string }[];
     },
-    cat: {
+    level: {
       rich_text: { plain_text: string }[];
     },
   };
