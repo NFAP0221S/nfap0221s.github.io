@@ -35,12 +35,15 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/posts',
+        source: '/api/categories',
         destination: `https://api.notion.com/v1/databases/${databaseId}/query`,
+      },
+      {
+        source: '/api/blocks/:id',
+        destination: `https://api.notion.com/v1/blocks/:id/children`,
       },
     ];
   },
-  
 };
 
 export default nextConfig;
