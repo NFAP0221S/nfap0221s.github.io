@@ -1,9 +1,9 @@
-import { fetchPosts } from '@/services/posts';
+import { fetchCategories } from '@/services/categories';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const posts = await fetchPosts();
+    const posts = await fetchCategories();
     return NextResponse.json(posts);
   } catch (error) {
     return NextResponse.error();

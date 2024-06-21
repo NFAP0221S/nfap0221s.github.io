@@ -1,5 +1,4 @@
 'use client'
-import { usePosts } from "@/app/hooks";
 
 export default function Home() {
   
