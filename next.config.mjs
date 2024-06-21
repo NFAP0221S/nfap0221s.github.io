@@ -3,7 +3,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID
 
 const nextConfig = {
-  // output: "export",
+  output: "export",
   reactStrictMode: true,
   basePath: "",
   assetPrefix: isProd ? "/" : "",
