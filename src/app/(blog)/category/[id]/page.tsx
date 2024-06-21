@@ -1,5 +1,5 @@
 import { getDatabase } from '@/lib/notion';
-import CategoryClientComponent from './CategoryClientComponent';
+import CategoryClientComponent from '@/app/(blog)/_components/posts/CategoryClientComponent';
 
 // generateStaticParams 함수 추가
 export async function generateStaticParams() {

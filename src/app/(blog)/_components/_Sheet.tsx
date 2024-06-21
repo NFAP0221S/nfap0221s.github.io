@@ -6,7 +6,7 @@ import SidebarContent from "./sidebar/SidebarContents";
 import { useCategories } from "@/app/hooks";
 
 export function _Sheet() {
-  const { data: categoryList, isLoading, error } = useCategories();
+  const { data: categoryList, error } = useCategories();
 
 
   if (error) {

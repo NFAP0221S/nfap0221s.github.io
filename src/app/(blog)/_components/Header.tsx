@@ -1,8 +1,8 @@
 'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import DarkModeSwitch from './DarkModeSwitch';
-import { useThemeClass } from '@/app/hooks';
 import _BreadCrumb from './_BreadCrumb';
 
 export default function Header() {

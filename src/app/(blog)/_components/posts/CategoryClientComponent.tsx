@@ -16,7 +16,7 @@ const renderCards = (block: any) => {
 };
 
 export default function CategoryClientComponent ({ id }: { id: string }) {
-  const { data: blocks, isLoading, error } = useBlocks(id);
+  const { data: blocks, error } = useBlocks(id);
 
   if (error) return <div>Error loading blocks: {error.message}</div>;
 

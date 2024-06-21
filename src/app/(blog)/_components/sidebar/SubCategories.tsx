@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-// import { getBlocks } from '@/lib/notion';
 
 interface Props {
   id: string

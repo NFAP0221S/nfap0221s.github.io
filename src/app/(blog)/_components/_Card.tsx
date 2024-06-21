@@ -10,7 +10,7 @@ interface CardProps {
 }
 
 export default function _Card({ id, title, date }: CardProps) {
-  const { data: blocks, isLoading, error } = useBlocks(id);
+  const { data: blocks, error } = useBlocks(id);
 
   if (error) return <div>Error loading blocks: {error.message}</div>;
 
