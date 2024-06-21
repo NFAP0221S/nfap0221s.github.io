@@ -1,3 +1,5 @@
+'use client'
+
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Post, getBlocks } from '@/lib/notion';
@@ -8,7 +10,7 @@ interface Props {
   categoryList: Post[]
 }
 
-export default async function SidebarContent({ categoryList }: Props) {
+export default function SidebarContent({ categoryList }: Props) {
   // 메인 카테고리와 서브 카테고리를 구분
   const 메인카테고리 = categoryList.filter(post => post.properties.level.rich_text[0].plain_text === 'main');
   const 서브카테고리 = categoryList.filter(post => post.properties.level.rich_text[0].plain_text === 'sub');

@@ -2,14 +2,14 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { getBlocks } from '@/lib/notion';
+// import { getBlocks } from '@/lib/notion';
 
 interface Props {
   id: string
   subCategory: string
 }
 
-export default async function SubCategories({ id, subCategory }: Props) {
+export default function SubCategories({ id, subCategory }: Props) {
   // const subCategoryList = await getBlocks(id);
   const renderBlock = (subCategory: any) => {
     switch (subCategory.type) {
