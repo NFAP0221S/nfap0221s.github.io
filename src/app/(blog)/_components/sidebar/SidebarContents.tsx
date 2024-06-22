@@ -11,29 +11,29 @@ interface Props {
 }
 
 export default function SidebarContent({ categoryList }: Props) {
-  // 메인 카테고리와 서브 카테고리를 구분
-  const 메인카테고리 = categoryList.filter(post => post.properties.level.rich_text[0].plain_text === 'main');
-  const 서브카테고리 = categoryList.filter(post => post.properties.level.rich_text[0].plain_text === 'sub');
+  // 메인 카테고리와 서브 카테고리로 각각 분할
+  const allMainCategory = categoryList.filter(post => post.properties.level.rich_text[0].plain_text === 'main');
+  const allSubCategory = categoryList.filter(post => post.properties.level.rich_text[0].plain_text === 'sub');
 
   const getSubCategories = (mainGroup: string) => {
-    return 서브카테고리.filter(sub => sub.properties.group.multi_select.some(group => group.name === mainGroup));
+    return allSubCategory.filter(sub => sub.properties.group.multi_select.some(group => group.name === mainGroup));
   };
 
   return (
     <ScrollArea>
       <div className="p-4">
-        {메인카테고리.map(main => {
-          const 메인태그 = main.properties.group.multi_select[0].name;
-          const 매치된_서브_카테고리 = getSubCategories(메인태그);
+        {allMainCategory.map(main => {
+          const mainGroup = main.properties.group.multi_select[0].name;
+          const matchedSubCategory = getSubCategories(mainGroup);
 
           return (
             <React.Fragment key={main.id}>
-              <div className="text-md font-semibold mb-2" title='메인_카테고리'>
+              <div className="text-md font-semibold mb-2" title='main_category'>
                 {main.properties.category.title[0].plain_text}
               </div>
-              {매치된_서브_카테고리.length > 0 && (
-                <div title='서브_카테고리'>
-                  {매치된_서브_카테고리.map(sub => (
+              {matchedSubCategory.length > 0 && (
+                <div title='sub_category'>
+                  {matchedSubCategory.map(sub => (
                     <React.Fragment key={sub.id}>
                       <SubCategories id={sub.id} subCategory={sub.properties.category.title[0].plain_text} />
                     </React.Fragment>

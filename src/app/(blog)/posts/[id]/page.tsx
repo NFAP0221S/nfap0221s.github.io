@@ -37,7 +37,7 @@ export default async function PostsPage({ params }: any) {
   }
 
   return (
-    <div title='카테고리'>
+    <div title='Posts'>
         <ul className='flex flex-wrap justify-center'>
           {blocks.map((block: any) => (
             <React.Fragment key={block.id}>
