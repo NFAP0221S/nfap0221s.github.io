@@ -13,7 +13,7 @@ export default function Header() {
         <nav className='flex items-center'>
           <Link href="/" className="mr-4">Home</Link>
           <Link href="/about" className="mr-4">About</Link>
-          <Link href="/test" className="mr-4">Test</Link>
+          {/* <Link href="/test" className="mr-4">Test</Link> */}
           <DarkModeSwitch />
         </nav>
     </header>

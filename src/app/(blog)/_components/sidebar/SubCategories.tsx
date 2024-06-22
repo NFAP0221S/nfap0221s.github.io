@@ -14,7 +14,7 @@ export default function SubCategories({ id, subCategory }: Props) {
     switch (subCategory.type) {
       case 'child_page':
         return (
-          <Link href={`/category/${subCategory.id}/`} className="text-md">
+          <Link href={`/posts/${subCategory.id}/`} className="text-md">
             <div>{subCategory.child_page.title}</div>
           </Link>
         );
@@ -28,7 +28,7 @@ export default function SubCategories({ id, subCategory }: Props) {
       {/* {subCategoryList && (
         )} */}
         <div className="ml-4">
-          <Link href={`/category/${id}/`} className="text-md">
+          <Link href={`/posts/${id}/`} className="text-md">
             <div>{subCategory}</div>
           </Link>
           {/* {subCategoryList.map((subCategory) => (

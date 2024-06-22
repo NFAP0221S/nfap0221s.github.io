@@ -5,7 +5,7 @@ import SidebarContent from "./SidebarContents";
 import { useCategories } from "@/app/hooks";
 
 interface SidebarProps {
-  categoryList? : NotionDB[]
+  categoryList : NotionDB[]
 }
 
 export default function Sidebar({categoryList}: SidebarProps) {
