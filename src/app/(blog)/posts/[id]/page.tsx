@@ -1,6 +1,7 @@
-import { getBlocks, getDatabase } from '@/lib/notion';
-import PostsClientComponent from '../../_components/posts/PostsClientComponent';
-import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
+import { getBlocks, getDatabase, getPage } from '@/lib/notion';
+import { notFound } from 'next/navigation';
+import React from 'react';
+import _Card from '../../_components/_Card';
 
 // generateStaticParams 함수 추가
 export async function generateStaticParams() {
@@ -14,18 +15,40 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PostsPage({ params }: { params: { id: string } }) {
-  // const blocks = await getBlocks(params.id)
+const renderCards = (block: any) => {
+  const type = block?.type;
+  const id = block?.id;
+  const title = block?.child_page?.title;
+  const date = block?.created_time;
 
-  const queryClient = new QueryClient()
-  await queryClient.prefetchQuery({
-    queryKey: ["blocks"],
-    queryFn: () => getBlocks(params.id),
-  })
+  if (type === 'child_page' && id && title && date) {
+    return <_Card key={id} id={id} title={title} date={date} />
+  }
+};
+
+export default async function PostsPage({ params }: any) {
+  const { id } = params;
+  
+  const page: any = await getPage(id);
+  const blocks: any = await getBlocks(id);
+
+  if (!page || !blocks) {
+    notFound();
+  }
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <PostsClientComponent id={params.id} />
-    </HydrationBoundary>
+    <div title='카테고리'>
+        <ul className='flex flex-wrap justify-center'>
+          {blocks.map((block: any) => (
+            <React.Fragment key={block.id}>
+              {block?.type === 'child_page' &&
+                <li className='w-full sm:w-1/1 md:w-1/1 lg:w-1/2 p-2'>
+                  {renderCards(block)}
+                </li>
+              }
+            </React.Fragment>
+          ))}
+        </ul>
+      </div>
   )
 }
