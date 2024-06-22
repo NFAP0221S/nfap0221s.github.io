@@ -1,6 +1,6 @@
 'use client'
 
-import { useBlocks } from '@/app/hooks/tanstack-query/useBlocks';
+import { useBlocks } from '@/app/hooks'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 
 interface CardProps {

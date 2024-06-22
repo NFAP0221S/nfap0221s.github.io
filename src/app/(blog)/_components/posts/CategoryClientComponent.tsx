@@ -2,7 +2,7 @@
 
 import React from 'react';
 import _Card from '../../_components/_Card';
-import { useBlocks } from '@/app/hooks/tanstack-query/useBlocks';
+import { useBlocks } from '@/app/hooks';
 
 const renderCards = (block: any) => {
   const type = block?.type;
@@ -15,16 +15,24 @@ const renderCards = (block: any) => {
   }
 };
 
-export default function CategoryClientComponent ({ id }: { id: string }) {
-  const { data: blocks, error } = useBlocks(id);
+interface CategoryClientComponentProps {
+  id: string
+  blocks: any
+}
+
+export default function CategoryClientComponent ({ id, blocks }: CategoryClientComponentProps) {
+  const { data, error } = useBlocks(id, {
+    queryKey: ['blocks'],
+    initialData: blocks,
+  });
 
   if (error) return <div>Error loading blocks: {error.message}</div>;
 
-  if (blocks) {
+  if (data) {
     return (
       <div title='카테고리'>
         <ul className='flex flex-wrap justify-center'>
-          {blocks.map((block: any) => (
+          {data.map((block: any) => (
             <React.Fragment key={block.id}>
               {block?.type === 'child_page' &&
                 <li className='w-full sm:w-1/1 md:w-1/1 lg:w-1/2 p-2'>

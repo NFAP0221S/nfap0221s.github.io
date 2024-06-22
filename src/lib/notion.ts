@@ -1,8 +1,10 @@
+'use server';
+
 import { Client } from '@notionhq/client';
 
 const notion = new Client({ auth: process.env.NEXT_PUBLIC_NOTION_API_KEY });
 
-export interface Post {
+export interface NotionDB {
   id: string;
   properties: {
     category: {
@@ -17,9 +19,9 @@ export interface Post {
   };
 }
 
-export const getDatabase = async (databaseId: string): Promise<Post[]> => {
+export const getDatabase = async (databaseId: string): Promise<NotionDB[]> => {
   const response = await notion.databases.query({ database_id: databaseId });
-  return response.results as unknown as Post[];
+  return response.results as unknown as NotionDB[];
 };
 
 export const getPage = async (pageId: string) => {

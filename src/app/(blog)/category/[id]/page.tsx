@@ -1,4 +1,4 @@
-import { getDatabase } from '@/lib/notion';
+import { getBlocks, getDatabase } from '@/lib/notion';
 import CategoryClientComponent from '@/app/(blog)/_components/posts/CategoryClientComponent';
 
 // generateStaticParams 함수 추가
@@ -13,6 +13,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function CategoryPage({ params }: { params: { id: string } }) {
-  return <CategoryClientComponent id={params.id} />;
+export default async function CategoryPage({ params }: { params: { id: string } }) {
+  const blocks = await getBlocks(params.id)
+
+  return <CategoryClientComponent id={params.id} blocks={blocks} />;
 }

@@ -2,12 +2,12 @@
 
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { Post } from '@/lib/notion';
+import { NotionDB } from '@/lib/notion';
 import React from 'react';
 import SubCategories from './SubCategories';
 
 interface Props {
-  categoryList: Post[]
+  categoryList: NotionDB[]
 }
 
 export default function SidebarContent({ categoryList }: Props) {

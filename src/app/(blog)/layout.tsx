@@ -5,8 +5,11 @@ import Sidebar from './_components/sidebar/Sidebar';
 import Footer from './_components/Footer';
 import _BreadCrumb from './_components/_BreadCrumb';
 import { _Sheet } from './_components/_Sheet';
+import { fetchCategories } from '@/services/categories';
+import { NotionDB } from '@/lib/notion';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({ children }: { children: React.ReactNode }) {
+  const categoryList: NotionDB[] = await fetchCategories()
 
   return (
     <div className='relative flex min-h-screen flex-col bg-gray'>
@@ -14,13 +17,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className='flex-1 bg-gray'>
         <div className='boder-b'>
           <div className='container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10'>
-            <Sidebar />
+            <Sidebar categoryList={categoryList} />
             {/* <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_100px]"> 메인 옆 오른쪽 side 그리드 필요할 경우 이것 사용 */}
             <main className='relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr] bg-gray'>
               <div className='flex flex-col flex-1' style={{ maxWidth: '1200px' }}>
                 <div className='flex items-center sticky top-14 z-30 bg-gray bg-opacity-80 backdrop-blur'>
                   <div className='p-2 md:hidden cursor-pointer'>
-                    <_Sheet/>
+                    <_Sheet categoryList={categoryList} />
                   </div>
                   <_BreadCrumb />
                 </div>
