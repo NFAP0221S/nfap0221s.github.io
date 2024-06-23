@@ -28,7 +28,7 @@ export default function SubCategories({ id, subCategory }: Props) {
       {/* {subCategoryList && (
         )} */}
         <div className="ml-4">
-          <Link href={`/posts/${id}/`} className="text-md">
+          <Link href={`/posts/${id}/1`} className="text-md">
             <div>{subCategory}</div>
           </Link>
           {/* {subCategoryList.map((subCategory) => (

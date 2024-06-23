@@ -27,7 +27,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
                   </div>
                   <_BreadCrumb />
                 </div>
-                <main className="flex-1 overflow-y-auto bg-gray">
+                <main className="flex-1 overflow-y-auto bg-gray" title='Posts'>
                   {children}
                 </main>
               </div>
