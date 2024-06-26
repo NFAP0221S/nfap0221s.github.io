@@ -21,7 +21,7 @@ export function _Pagination({ totalPages, currentPage, basePath }: PaginationPro
   const router = useRouter();
 
   const handlePageClick = (page: number) => {
-    if ((page+1 === 1) || (page === totalPages) || (page-1 === totalPages)) return null;
+    if ((page+1 === 1) || (page-1 === totalPages)) return null;
     router.push(`${basePath}/${page}`);
   };
 
@@ -63,7 +63,7 @@ export function _Pagination({ totalPages, currentPage, basePath }: PaginationPro
 
         <PaginationItem>
           <PaginationNext
-            onClick={() => handlePageClick(currentPage + 1)}
+            onClick={() => handlePageClick(currentPage)}
             isDisabled={currentPage === totalPages}
           />
         </PaginationItem>
