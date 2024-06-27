@@ -21,6 +21,7 @@ export function _Pagination({ totalPages, currentPage, basePath }: PaginationPro
   const router = useRouter();
 
   const handlePageClick = (page: number) => {
+    console.log('page:', page)
     if ((page+1 === 1) || (page-1 === totalPages)) return null;
     router.push(`${basePath}/${page}`);
   };
@@ -36,6 +37,7 @@ export function _Pagination({ totalPages, currentPage, basePath }: PaginationPro
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
+            className={currentPage === 1 ? '' : 'cursor-pointer'}
             onClick={() => handlePageClick(currentPage - 1)}
             isDisabled={currentPage === 1}
           />
@@ -48,7 +50,7 @@ export function _Pagination({ totalPages, currentPage, basePath }: PaginationPro
          {[...Array(endPage - adjustedStartPage + 1)].map((_, index) => (
           <PaginationItem key={index}>
             <PaginationLink
-              className="cusor-point"
+              className="cursor-pointer"
               isActive={index + adjustedStartPage === currentPage}
               onClick={() => handlePageClick(index + adjustedStartPage)}
             >
@@ -63,7 +65,8 @@ export function _Pagination({ totalPages, currentPage, basePath }: PaginationPro
 
         <PaginationItem>
           <PaginationNext
-            onClick={() => handlePageClick(currentPage)}
+            className={currentPage === totalPages ? '' : 'cursor-pointer'}
+            onClick={() => handlePageClick(currentPage + 1)}
             isDisabled={currentPage === totalPages}
           />
         </PaginationItem>
