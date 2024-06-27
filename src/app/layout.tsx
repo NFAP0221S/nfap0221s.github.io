@@ -5,7 +5,6 @@ import Script from "next/script";
 
 import ThemeProvider from "./provider/theme-provider";
 import ReactQueryProvider from "./provider/query-provider";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 const inter = Inter({ subsets: ["latin"] });
 
