@@ -15,7 +15,7 @@ export default async function _Card({ id, title, date }: CardProps) {
 
   // console.log('paragraph', blocks[1].created_time)
   return (
-    <Card>
+    <Card className='cursor-pointer'>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription className="truncate">{dateSlcie}</CardDescription>

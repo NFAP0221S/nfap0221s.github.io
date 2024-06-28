@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import _Card from '@/app/(blog)/_components/_Card';
 import { _Pagination } from '@/app/(blog)/_components/_Pagenation';
+import Link from 'next/link';
 
 interface PostsBlocksProps {
   id: number;
@@ -17,7 +18,11 @@ const renderCards = (block: any) => {
   const date = block?.created_time;
 
   if (type === 'child_page' && id && title && date) {
-    return <_Card key={id} id={id} title={title} date={date} />;
+    return (
+    <Link href={`/post/${id}`}>
+      <_Card key={id} id={id} title={title} date={date} />
+    </Link>
+    )
   }
 };
 
