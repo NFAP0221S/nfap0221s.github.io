@@ -14,7 +14,7 @@ export async function generateStaticParams() {
       return {
         id: post.id,
         blockIds: blocks
-          .filter(block => block.type === 'child_page') // child_page 타입인 블록들만 필터링
+          .filter((block: any) => block.type === 'child_page') // child_page 타입인 블록들만 필터링
           .map(block => block.id) // 필터된 블록들의 ID만 추출
       };
     })
