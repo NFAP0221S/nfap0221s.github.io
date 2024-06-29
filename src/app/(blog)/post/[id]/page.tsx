@@ -10,9 +10,12 @@ export async function generateStaticParams() {
   const postDetails = await Promise.all(
     posts.map(async (post) => {
       const blocks = await getBlocks(post.id);
+      console.log('blocksblocks', blocks)
       return {
         id: post.id,
-        blockIds: blocks.map(block => block.id)
+        blockIds: blocks
+          .filter(block => block.type === 'child_page') // child_page 타입인 블록들만 필터링
+          .map(block => block.id) // 필터된 블록들의 ID만 추출
       };
     })
   );
