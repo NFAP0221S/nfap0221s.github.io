@@ -4,39 +4,28 @@ import React from 'react';
 import Link from 'next/link';
 
 interface Props {
-  id: string
-  subCategory: string
+  id: string;
+  subCategory: string;
+  selectedCategoryId: string | null;
+  onCategoryClick: (id: string) => void;
 }
 
-export default function SubCategories({ id, subCategory }: Props) {
-  // const subCategoryList = await getBlocks(id);
-  const renderBlock = (subCategory: any) => {
-    switch (subCategory.type) {
-      case 'child_page':
-        return (
-          <Link href={`/posts/${subCategory.id}/`} className="text-md">
-            <div>{subCategory.child_page.title}</div>
-          </Link>
-        );
-      default:
-        return null;
-    }
+export default function SubCategories({ id, subCategory, selectedCategoryId, onCategoryClick }: Props) {
+  const isSelected = selectedCategoryId === id;
+
+  const handleClick = () => {
+    onCategoryClick(id);
   };
 
   return (
-    <>
-      {/* {subCategoryList && (
-        )} */}
-        <div className="ml-4">
-          <Link href={`/posts/${id}/1`} className="text-md">
-            <div>{subCategory}</div>
-          </Link>
-          {/* {subCategoryList.map((subCategory) => (
-            <div key={subCategory.id} className="text-sm">
-              {renderBlock(subCategory)}
-            </div>
-          ))} */}
-        </div>
-    </>
+    <div className="ml-4">
+      <Link 
+        href={`/posts/${id}/1`}
+        className={`text-md ${isSelected ? 'text-blue-500' : 'hover:text-blue-500'}`}
+        onClick={handleClick}
+      >
+        <div>{subCategory}</div>
+      </Link>
+    </div>
   );
 }

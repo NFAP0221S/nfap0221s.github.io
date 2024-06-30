@@ -3,7 +3,7 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { NotionDB } from '@/lib/notion';
-import React from 'react';
+import React, { useState } from 'react';
 import SubCategories from './SubCategories';
 
 interface Props {
@@ -11,6 +11,12 @@ interface Props {
 }
 
 export default function SidebarContent({ categoryList }: Props) {
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
+
+  const handleCategoryClick = (id: string) => {
+    setSelectedCategoryId(id);
+  };
+  
   // 메인 카테고리와 서브 카테고리로 각각 분할
   const allMainCategory = categoryList.filter(post => post.properties.level.rich_text[0].plain_text === 'main');
   const allSubCategory = categoryList.filter(post => post.properties.level.rich_text[0].plain_text === 'sub');
@@ -35,7 +41,12 @@ export default function SidebarContent({ categoryList }: Props) {
                 <div title='sub_category'>
                   {matchedSubCategory.map(sub => (
                     <React.Fragment key={sub.id}>
-                      <SubCategories id={sub.id} subCategory={sub.properties.category.title[0].plain_text} />
+                      <SubCategories 
+                        id={sub.id} 
+                        subCategory={sub.properties.category.title[0].plain_text} 
+                        selectedCategoryId={selectedCategoryId}
+                        onCategoryClick={handleCategoryClick}
+                      />
                     </React.Fragment>
                   ))}
                 </div>
