@@ -1,6 +1,4 @@
-// 'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import _Card from '@/app/(blog)/_components/_Card';
 import { _Pagination } from '@/app/(blog)/_components/_Pagenation';
 import Link from 'next/link';

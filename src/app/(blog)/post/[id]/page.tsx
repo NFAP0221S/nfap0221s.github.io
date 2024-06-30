@@ -10,7 +10,6 @@ export async function generateStaticParams() {
   const postDetails = await Promise.all(
     posts.map(async (post) => {
       const blocks = await getBlocks(post.id);
-      console.log('blocksblocks', blocks)
       return {
         id: post.id,
         blockIds: blocks
@@ -91,7 +90,7 @@ export default async function PostPage({ params }: any) {
   };
 
   const renderBlock = (block: any) => {
-    // console.log('최상위 블럭:',block)
+    console.log('최상위 블럭:',block)
     switch (block.type) {
       case 'paragraph':
         console.log('paragraph 블럭:',block.paragraph.rich_text)
@@ -187,13 +186,10 @@ export default async function PostPage({ params }: any) {
         return <div>Unsupported block type: {block.type}</div>;
     }
   };
+
+  console.log('asdasd:', blocks)
   
   return (
-    // <div>
-    //   <h1>Post Page</h1>
-    //   {/* 가져온 블록 데이터를 렌더링 */}
-    //   <pre>{JSON.stringify(blocks, null, 2)}</pre>
-    // </div>
     <div>
       {/* <h1>{page.properties['이름'].title[0].plain_text}</h1> */}
       <div>
