@@ -1,6 +1,7 @@
 import { getBlocks, getDatabase, getPage } from "@/lib/notion";
 import { notFound } from "next/navigation";
 import React from "react";
+import BreadcrumbManager from "../component/BreadcrumbManager";
 
 const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string;
 
@@ -189,6 +190,7 @@ export default async function PostPage({ params }: any) {
   
   return (
     <div>
+      <BreadcrumbManager title={'Current'} />
       {/* <h1>{page.properties['이름'].title[0].plain_text}</h1> */}
       <div>
         {blocks.map((block) => (
